@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Living Room Refresh",
+    "desc": "Add peace lilies or ferns near windows for natural air purification.",
+    "image": "https://i.ibb.co.com/C5fjt7Hw/lily.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Work Desk Vibes",
+    "desc": "Keep small succulents or snake plants on your desk to boost focus.",
+    "image": "https://i.ibb.co.com/R4DKM70r/snake.webp"
+  },
+  {
+    "id": 3,
+    "title": "Balcony Oasis",
+    "desc": "Hang potted herbs and trailing ivy to create a mini garden escape.",
+    "image": "https://i.ibb.co.com/gZnkd0xD/herbs.jpg"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Ava Green",
+    "specialization": "Indoor Plant Specialist",
+    "image": "https://i.ibb.co.com/rKJHhhsV/expert-3.webp"
+  },
+  {
+    "id": 2,
+    "name": "Noah Bloom",
+    "specialization": "Hydroponic Expert",
+    "image": "https://i.ibb.co.com/hxLNFqcq/expert-2.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Liam Leaf",
+    "specialization": "Sustainable Gardening Advisor",
+    "image": "https://i.ibb.co.com/RGFKf3vz/expert-1.webp"
+  }
+]
