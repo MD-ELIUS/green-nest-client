@@ -1,118 +1,89 @@
+// Banner.jsx
 import React from "react";
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/scrollbar";
 
-const ImageSlider = () => {
-  const slides = [
-    {
-      background:
-        "https://i.ibb.co.com/gMkJRGPD/bg-1.png",
-      leftPlant: "https://i.ibb.co.com/1fWztmZw/plant.png",
-      rightPlant: "https://i.ibb.co.com/GfFC3c6M/detailed-plant-isolated.png",
-      slogan: "Rooted in Nature, Flourishing with Care",
-    },
-    {
-      background:
-        "https://i.ibb.co.com/hxV5sPFz/bg-2.png",
-      leftPlant:
-        "https://i.ibb.co.com/zT0YBKHw/vibrant-green-plant-beige-pot-peaceful-home-decor.png",
-      rightPlant: "https://i.ibb.co.com/1fWztmZw/plant.png",
-      slogan: "Sustainability Begins with You",
-    },
-    {
-      background:
-        "https://i.ibb.co.com/B2v1jgK3/bg-3.png",
-      leftPlant: "https://i.ibb.co.com/GfFC3c6M/detailed-plant-isolated.png",
-      rightPlant:
-        "https://i.ibb.co.com/zT0YBKHw/vibrant-green-plant-beige-pot-peaceful-home-decor.png",
-      slogan: "Sowing Green Dreams, Reaping Pure Living",
-    },
-  ];
+const banners = [
+  {
+    id: 1,
+    image:
+      "https://plus.unsplash.com/premium_photo-1683134285765-87d4d565efa1?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bGl2aW5nJTIwcm9vbSUyMHBsYW50c3xlbnwwfHwwfHx8MA%3D%3D",
+    title: "Welcome to GreenNest",
+    subtitle: "Bring Nature to Your Home",
+    buttonText: "Shop Now",
+    buttonLink: "/shop",
+  },
+  {
+    id: 2,
+    image:
+      "https://media.architecturaldigest.com/photos/5dcde00380598800086215f6/16:9/w_2560%2Cc_limit/Osofsky_Oct19-5.jpg",
+    title: "Fresh Indoor Plants",
+    subtitle: "Beautify Your Living Space",
+    buttonText: "Explore",
+    buttonLink: "/shop",
+  },
+  {
+    id: 3,
+    image:
+      "https://cdn.mos.cms.futurecdn.net/v2/t:95,l:0,cw:1920,ch:1080,q:80,w:1920/koqquZZfQgzvGLjFkZQ8wJ.jpeg",
+    title: "GreenNest Home Shop",
+    subtitle: "Healthy Plants for a Healthy Life",
+    buttonText: "Get Started",
+    buttonLink: "/shop",
+  },
+];
 
+const Banner = () => {
   return (
-    <div className="w-11/12 mx-auto mb-4 sm:mb-6 md:mb-10 lg:mb-14 xl:mb-16 2xl:mb-20">
+    <div className="w-full relative overflow-hidden">
       <Swiper
-        modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-        spaceBetween={30}
+        modules={[Autoplay, Pagination]}
+        spaceBetween={0}
         slidesPerView={1}
-        navigation
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 3500, disableOnInteraction: false }}
         loop={true}
-        className="rounded-2xl shadow-lg custom-swiper"
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
+        pagination={{ clickable: true }}
+        className="bannerSwiper"
       >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <div
-              className="
-                relative w-full 
-                min-h-[250px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[450px] xl:min-h-[500px]
-                flex items-center justify-center text-white overflow-hidden
-              "
-              style={{
-                backgroundImage: `url(${slide.background})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center center",
-              }}
-            >
+        {banners.map((banner) => (
+          <SwiperSlide key={banner.id}>
+            <div className="relative w-full h-[260px] sm:h-[320px] md:h-[380px] lg:h-[430px] xl:h-[450px] ">
+              
+              <img
+                src={banner.image}
+                alt={banner.title}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
 
+              {/* Overlay */}
               <div className="absolute inset-0 bg-black/40"></div>
 
+              {/* Center Content */}
+              <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4">
+                <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">
+                  {banner.title}
+                </h1>
 
-              <img
-                src={slide.leftPlant}
-                alt="Left plant"
-                className="
-                  absolute left-1 sm:left-6 bottom-0
-                  w-28 sm:w-38 md:w-50 lg:w-56 xl:w-64
-                  object-contain drop-shadow-2xl transition-all duration-300
-                "
-              />
+                <p className="text-base sm:text-lg md:text-2xl mb-6 drop-shadow-md">
+                  {banner.subtitle}
+                </p>
 
-
-              <img
-                src={slide.rightPlant}
-                alt="Right plant"
-                className="
-                  absolute right-1 sm:right-6 bottom-0
-                  w-28 sm:w-38 md:w-50 lg:w-56 xl:w-64
-                  object-contain drop-shadow-2xl transition-all duration-300
-                "
-              />
-
-
-
-              <div className="absolute top-26 sm:top-24 md:top-38 lg:top-44 xl:top-50 z-10 text-center px-4 sm:px-6 max-w-[90%] sm:max-w-2xl">
-                <h2 className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-semibold drop-shadow-md">
-                  {slide.slogan}
-                </h2>
+                <a
+                  href={banner.buttonLink}
+                  className="btn btn-primary btn-soft font-semibold"
+                >
+                  {banner.buttonText}
+                </a>
               </div>
-
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-
-
-      <style >{`
-        @media (max-width: 640px) {
-          .custom-swiper .swiper-button-next,
-          .custom-swiper .swiper-button-prev {
-            width: 25px !important;
-            height: 25px !important;
-          }
-          .custom-swiper .swiper-button-next::after,
-          .custom-swiper .swiper-button-prev::after {
-            font-size: 16px !important;
-          }
-        }
-      `}</style>
     </div>
   );
 };
 
-export default ImageSlider;
+export default Banner;

@@ -11,6 +11,8 @@ import Loading from '../components/Loading';
 import PrivateRoute from './PrivateRoute';
 import ErrorPage from '../pages/ErrorPage';
 import ForgotPassword from '../pages/ForgotPassword';
+import AboutUs from '../pages/AboutUs';
+import Contact from '../pages/Contact';
 
 const router = createBrowserRouter([
     {
@@ -31,6 +33,16 @@ const router = createBrowserRouter([
                 element: <Plants></Plants>,
                 hydrateFallbackElement: <Loading></Loading>
             },
+            {
+                path: '/about',
+                Component: AboutUs
+            },
+            {
+                path: '/contact',
+                Component: Contact
+            },
+            
+
 
             {
                 path: '/profile',
@@ -55,7 +67,7 @@ const router = createBrowserRouter([
             {
                 path: '/plants/:id',
                 loader: () => fetch("/plants.json"),
-                element: (<PrivateRoute><PlantDetails></PlantDetails></PrivateRoute>),
+                element: <PlantDetails></PlantDetails>,
                 hydrateFallbackElement: <Loading></Loading>
             }
 

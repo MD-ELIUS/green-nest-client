@@ -16,7 +16,7 @@ const Home = () => {
     const plants = useLoaderData();
 
     return (
-        <div className='py-4 sm:py-6 md:py-10 lg:py-14 xl:py-16 2xl:py-20'>
+        <div className=''>
             <Banner></Banner>
             <TopPlants plants={plants}></TopPlants>
             <PlantCare></PlantCare>
@@ -26,7 +26,7 @@ const Home = () => {
             <Suspense fallback={<Loading />} >
                 <HomeDecor decorPromise={decorPromise} ></HomeDecor>
             </Suspense>
-            <PlantOfTheWeek plants={plants}></PlantOfTheWeek>
+            {/* <PlantOfTheWeek plants={plants}></PlantOfTheWeek> */}
 
         </div>
     );

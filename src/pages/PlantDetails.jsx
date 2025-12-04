@@ -1,91 +1,135 @@
-import React from 'react';
-import { useLoaderData, useParams } from 'react-router';
-import { toast } from 'react-toastify';
+import React from "react";
+import { useLoaderData, useParams } from "react-router";
+import { toast } from "react-toastify";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import { motion } from "framer-motion";
+import "swiper/css";
+import "swiper/css/pagination";
 
 const PlantDetails = () => {
-  const paramId = useParams();
-  const plantId = parseInt(paramId.id);
+  const { id } = useParams();
+  const plantId = parseInt(id);
   const plantData = useLoaderData();
-  const plant = plantData.find(p => p.plantId === plantId);
+  const plant = plantData.find((p) => p.plantId === plantId);
 
-  const handleBtn = (event) => {
-    event.preventDefault();
+  const handleBtn = (e) => {
+    e.preventDefault();
     toast.success("Consultation booked successfully!");
-    event.target.reset();
-  }
+    e.target.reset();
+  };
 
   return (
-    <div className="w-11/12 max-w-5xl mx-auto py-6 sm:py-8 md:py-12 lg:py-16 xl:py-18 2xl:py-20 bg-white shadow-lg rounded-2xl p-6 sm:p-8 md:p-10 my-4 sm:my-6 md:my-10 lg:my-14 xl:my-16 2xl:my-20">
-      {/* Title */}
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl 2xl:text-[64px] font-bold text-primary text-center mb-8 sm:mb-10">
-        Plant Details
-      </h1>
-
-      {/* Plant Image */}
-      <div className="w-full flex justify-center mb-6 sm:mb-8 md:mb-10">
-        <img
-          className="w-full max-w-3xl h-64 sm:h-80 md:h-96 lg:h-[28rem] xl:h-[32rem] 2xl:h-[36rem] rounded-2xl object-cover shadow-md hover:shadow-xl transition-shadow duration-300"
-          src={plant.image}
-          alt={plant.plantName}
-        />
-      </div>
-
-      {/* Plant Info */}
-      <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-8 2xl:gap-10 text-center">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[42px] 2xl:text-[48px] font-semibold text-primary">
-          {plant.plantName}
-        </h2>
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[22px] 2xl:text-[24px] text-accent leading-relaxed">
-          {plant.description}
-        </p>
-
-        <div className="flex flex-col sm:flex-row sm:justify-center sm:gap-10 md:gap-16 mt-4 sm:mt-6">
-          <h4 className="text-lg sm:text-xl md:text-2xl font-medium">
-            Price: <span className="text-green-600 font-semibold">${plant.price}</span>
-          </h4>
-          <h4 className="text-lg sm:text-xl md:text-2xl font-medium">
-            Rating: <span className="text-yellow-500 font-semibold">{plant.rating} ⭐</span>
-          </h4>
-          <h4 className="text-lg sm:text-xl md:text-2xl font-medium">
-            Stock: <span className="text-red-500 font-semibold">{plant.availableStock}</span>
-          </h4>
-        </div>
-      </div>
-
-      {/* Booking Form */}
-      <div className="mt-10 sm:mt-12 md:mt-16 bg-gray-50 rounded-xl p-6 sm:p-8 md:p-10 shadow-inner flex justify-center">
-        <form onSubmit={handleBtn} className="flex flex-col gap-4 sm:gap-5 md:gap-6 w-full max-w-md">
-
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[40px] 2xl:text-[44px] text-center font-semibold">
-            Book Consultation
+    <div className="w-11/12 max-w-6xl mx-auto py-10 sm:py-12 md:py-16">
+      {/* Main Container */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="bg-white rounded-3xl shadow-lg overflow-hidden"
+      >
+        {/* Header */}
+        <div className="px-6 py-8 sm:px-10 sm:py-12 text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-3">
+            {plant.plantName}
           </h1>
+          <p className="text-gray-600 sm:text-lg md:text-xl">
+            Discover the beauty and benefits of this plant.
+          </p>
+        </div>
 
-          <label className="text-base sm:text-lg md:text-xl font-medium text-gray-700 ">Name</label>
-          <input
-            type="text"
-            className="w-full border-2 border-green-500 focus:outline-none focus:ring-2 rounded-lg p-3 text-base sm:text-lg md:text-xl"
-            placeholder="Your Name"
-            required
-          />
+        {/* Image & Info Grid */}
+        <div className="flex flex-col lg:flex-row gap-6 px-6 sm:px-10 pb-8">
+          {/* Swiper Images */}
+          <div className="lg:w-1/2 w-full  overflow-hidden ">
+            <Swiper
+              modules={[Autoplay, Pagination]}
+              slidesPerView={1}
+              spaceBetween={10}
+              loop
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              pagination={{ clickable: true }}
+            >
+              {[plant.image, plant.image, plant.image].map((img, idx) => (
+                <SwiperSlide key={idx}>
+                  <img
+                    src={img}
+                    alt={plant.plantName}
+                    className="w-full h-64 sm:h-72 md:h-80 lg:h-115 object-cover rounded-2xl"
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
 
-          <label className="text-base sm:text-lg md:text-xl font-medium text-gray-700 ">Email</label>
-          <input
-            type="email"
-            className="w-full border-2 border-green-500 focus:outline-none focus:ring-2 rounded-lg p-3 text-base sm:text-lg md:text-xl"
-            placeholder="Email Address"
-            required
-          />
-
-          <button
-            type="submit"
-            className="w-full mt-4 sm:mt-6 md:mt-8 bg-primary text-white text-base sm:text-lg md:text-xl font-semibold rounded-lg py-3 hover:bg-primary/90 transition-colors duration-300 cursor-pointer"
+          {/* Info Section */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:w-1/2 w-full flex flex-col gap-6"
           >
-            Book Now
-          </button>
-        </form>
-      </div>
-    </div>
+       
 
+            {/* Description */}
+            <p className="text-gray-700 text-base sm:text-lg md:text-xl leading-relaxed">
+              {plant.description}
+            </p>
+
+           
+          </motion.div>
+
+          
+        </div>
+
+             {/* Stats Grid */}
+            <div className="grid grid-cols-3 gap-4 w-11/12 mx-auto mb-8">
+              <div className="bg-green-50 p-4 rounded-xl shadow hover:shadow-lg text-center">
+                <h3 className="font-semibold mb-1">Price</h3>
+                <p className="text-green-600 font-bold">${plant.price}</p>
+              </div>
+              <div className="bg-yellow-50 p-4 rounded-xl shadow hover:shadow-lg text-center">
+                <h3 className="font-semibold mb-1">Rating</h3>
+                <p className="text-yellow-500 font-bold">{plant.rating} ⭐</p>
+              </div>
+              <div className="bg-red-50 p-4 rounded-xl shadow hover:shadow-lg text-center">
+                <h3 className="font-semibold mb-1">Stock</h3>
+                <p className="text-red-500 font-bold">{plant.availableStock}</p>
+              </div>
+            </div>
+
+         {/* Booking Form */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="bg-gray-50 rounded-2xl p-6 shadow-inner w-11/12  md:w-1/2 mx-auto mb-8"
+            >
+              <h2 className="text-2xl sm:text-3xl font-semibold mb-4 text-center">
+                Book a Consultation
+              </h2>
+              <form onSubmit={handleBtn} className="flex flex-col gap-3">
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  required
+                  className="border-2 border-green-500 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  required
+                  className="border-2 border-green-500 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+                <button className="bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition">
+                  Book Now
+                </button>
+              </form>
+            </motion.div>
+
+
+      </motion.div>
+    </div>
   );
 };
 

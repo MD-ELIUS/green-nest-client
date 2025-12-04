@@ -6,8 +6,8 @@ import { ToastContainer } from 'react-toastify';
 
 const HomeLayOut = () => {
     return (
-        <div className='flex flex-col min-h-screen'>
-            <section className='shadow-sm' >
+        <div className='flex flex-col min-h-screen max-w-[1600px] mx-auto  bg-gradient-to-br from-green-50 via-green-100 to-green-200'>
+            <section className='shadow-sm sticky top-0 z-50 bg-white' >
                 <Navbar></Navbar>
             </section>
 
