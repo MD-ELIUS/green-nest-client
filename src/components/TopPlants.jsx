@@ -16,7 +16,7 @@ const TopPlants = ({ plants }) => {
                     topPlants.map(plant => <PlantCard key={plant.plantId} plant={plant}></PlantCard>)
                 }
             </div>
-            <Link to="/plants" className='btn btn-primary btn-outline w-1/4 mx-auto mt-2'>See more</Link>
+            <Link to="/plants" className='btn btn-primary btn-outline w-1/3 md:w-1/4 mx-auto mt-2'>See more</Link>
         </div>
     );
 };

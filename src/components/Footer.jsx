@@ -51,7 +51,7 @@ const Footer = () => {
           <p className="text-gray-600 text-center md:text-left text-sm">
             Get the latest updates on plants, care tips, and exclusive offers.
           </p>
-          <form className="flex md:flex-col lg:flex-row w-full max-w-sm gap-2 mt-2">
+          <form className="flex flex-col sm:flex-row  md:flex-col lg:flex-row w-full max-w-sm gap-2 mt-2">
             <input 
               type="email" 
               placeholder="Enter your email" 

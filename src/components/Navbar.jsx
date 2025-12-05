@@ -192,7 +192,11 @@ const Navbar = () => {
                 <div className="md:hidden w-11/12 mx-auto   rounded-b-xl flex flex-col justify-center items-center activeClass   py-4 space-y-3 text-center font-semibold text-accent ">
                     <NavLink to="/" onClick={() => setMenuOpen(false)} className="btn btn-secondary btn-outline w-full hover:btn-primary " > Home </NavLink>
                     <NavLink to="/plants" onClick={() => setMenuOpen(false)} className="btn btn-secondary btn-outline w-full hover:btn-primary " > Plants </NavLink>
-                    <NavLink to="/profile" onClick={() => setMenuOpen(false)} className="btn btn-secondary btn-outline w-full hover:btn-primary " > My Profile </NavLink>
+                   {
+                    user &&  <NavLink to="/profile" onClick={() => setMenuOpen(false)} className="btn btn-secondary btn-outline w-full hover:btn-primary " > My Profile </NavLink>
+                   }
+                    <NavLink to="/about" onClick={() => setMenuOpen(false)} className="btn btn-secondary btn-outline w-full hover:btn-primary " > About Us </NavLink>
+                    <NavLink to="/contact" onClick={() => setMenuOpen(false)} className="btn btn-secondary btn-outline w-full hover:btn-primary " > Contact </NavLink>
 
                     {
                         user ? (<div className='space-y-3'>

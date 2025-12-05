@@ -5,6 +5,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import { Link } from "react-router";
 
 const banners = [
   {
@@ -14,7 +15,7 @@ const banners = [
     title: "Welcome to GreenNest",
     subtitle: "Bring Nature to Your Home",
     buttonText: "Shop Now",
-    buttonLink: "/shop",
+    buttonLink: "/plants",
   },
   {
     id: 2,
@@ -23,7 +24,7 @@ const banners = [
     title: "Fresh Indoor Plants",
     subtitle: "Beautify Your Living Space",
     buttonText: "Explore",
-    buttonLink: "/shop",
+    buttonLink: "/plants",
   },
   {
     id: 3,
@@ -32,7 +33,7 @@ const banners = [
     title: "GreenNest Home Shop",
     subtitle: "Healthy Plants for a Healthy Life",
     buttonText: "Get Started",
-    buttonLink: "/shop",
+    buttonLink: "/plants",
   },
 ];
 
@@ -71,12 +72,12 @@ const Banner = () => {
                   {banner.subtitle}
                 </p>
 
-                <a
-                  href={banner.buttonLink}
+                <Link
+                  to={banner.buttonLink}
                   className="btn btn-primary btn-soft font-semibold"
                 >
                   {banner.buttonText}
-                </a>
+                </Link>
               </div>
             </div>
           </SwiperSlide>
